@@ -1,0 +1,52 @@
+Entity
+
+User- (username,email,password,picturePath,role(USER,ADMIN), VideoEntity,SubscriptionEntity)
+
+Video - (title,description,videoUrl,thumbUrl,views(integer),dislike,CommentEntity,LikeEntity,CategoryEntity)
+
+Comment - (text,LikeEntity)
+
+Like - (LikeType enum (like,dislike)
+
+Channel - (name, ...)
+
+Subscription - (subscriber,subscribers To(kimga)
+
+Category - (name)
+
+PlayList- (Set<VideoEntity>,EmployeeEntity)
+
+Notification (Content,boolean seen,targetUser)
+
+report (video, type, 
+
+History (VideoEntity,EmployeeEntity,LocalDateTime watchedTime)
+
+
+microservices:
+
+AuthService - register, login, update profile
+
+video service - upload, get, 
+
+channel service - channel, subscription, category
+
+interaction service - like, comment, report, history
+
+notification-service - notification
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,70 @@
+server:
+  port: 8085
+
+
+
+spring:
+  application:
+    name: CHANNEL-SERVICE
+  profiles:
+    active: default
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 50MB
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:5432/metube
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:12345}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+
+
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:64.226.102.195:9092,64.226.102.195:9093,64.226.102.195:9094}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URI:http://${EUREKA_HOST:localhost}:8761/eureka/}
+  instance:
+    preferIpAddress: true
+
+springdoc:
+  swagger-ui:
+    path: /api/channel/swagger-ui
+  api-docs:
+    path: /api/channel/v3/api-docs
+
+logging:
+  level:
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+
+
+
+
+
+cloud:
+  aws:
+    credentials:
+      accessKey: AKIA6GBMGGFRI3DD7TH4
+      secretKey: 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
+    region:
+      static: us-east-1
+    s3:
+      bucket: my-team-bucket-b30
+
+
+

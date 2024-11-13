@@ -1,0 +1,11 @@
+
+services:
+  auth-service:
+    image: saidaloshamsiyev1/auth-service
+    ports:
+      - "8084:8080"
+
+  channel-service:
+    image: saidaloshamsiyev1/channel-service
+    ports:
+      - "8085:8085"

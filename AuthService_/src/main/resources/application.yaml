@@ -1,0 +1,60 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: AUTH-SERVICE
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:5432/metube
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:12345}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+#
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 640189109177-l2ogibf9hdoa91sg1b3bdbsrooo4tqip.apps.googleusercontent.com
+            client-secret: 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
+            scope: profile, email
+            redirect-uri: "{baseUrl}/login/oauth2/code/google"
+        provider:
+          google:
+            authorization-uri: https://accounts.google.com/o/oauth2/v2/auth
+            token-uri: https://oauth2.googleapis.com/token
+            user-info-uri: https://openidconnect.googleapis.com/v1/userinfo
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URI:http://${EUREKA_HOST:localhost}:8761/eureka/}
+  instance:
+    preferIpAddress: true
+
+springdoc:
+  swagger-ui:
+    path: /api/auth/swagger-ui
+  api-docs:
+    path: /api/auth/v3/api-docs
+
+
+
+jwt:
+  secret: qwefklsdfj3roif134adsj14fdslkjf1234fiodwq
+  accessTokenExpiration: 3600000
+  refreshTokenExpiration: 86400000
+
+smtp:
+  host: smtp.example.com
+  port: 587
+  username: muxammadaminartikov
+  password: aaebzfihlumxxoyn

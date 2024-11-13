@@ -1,0 +1,71 @@
+server:
+  port: 8080
+
+spring:
+  main:
+    web-application-type: reactive
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: AUTH-SERVICE
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/api/auth/**
+        - id: CHANNEL-SERVICE
+          uri: lb://CHANNEL-SERVICE
+          predicates:
+            - Path=/api/channel/**
+        - id: INTERACTION-SERVICE
+          uri: lb://INTERACTION-SERVICE
+          predicates:
+            - Path=/api/commit/**
+        - id: INTERACTION-SERVICE
+          uri: lb://INTERACTION-SERVICE
+          predicates:
+            - Path=/api/history/**
+        - id: INTERACTION-SERVICE
+          uri: lb://INTERACTION-SERVICE
+          predicates:
+            - Path=/api/like/**
+        - id: INTERACTION-SERVICE
+          uri: lb://INTERACTION-SERVICE
+          predicates:
+            - Path=/api/report/**
+        - id: VIDEO-SERVICE
+          uri: lb://VIDEO-SERVICE
+          predicates:
+            - Path=/api/video/**
+      default-filters:
+        - name: JwtFilter
+
+      #      discovery:
+      #        locator:
+      #          enabled: true
+
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOriginPatterns: "*"   # "*" orqali barcha domenlarga ruxsat berish
+            allowedMethods: "*"
+            allowedHeaders: "*"
+            allowCredentials: false
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URI:http://${EUREKA_HOST:localhost}:8761/eureka/}
+  instance:
+    preferIpAddress: true
+
+
+springdoc:
+  swagger-ui:
+    config-url: /v3/api-docs/swagger-config
+    url: /swagger-ui.html
+
+
+jwt:
+  secret: qwefklsdfj3roif134adsj14fdslkjf1234fiodwq
